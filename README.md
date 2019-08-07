@@ -29,5 +29,5 @@ eg. clear my list
 
 
 
-Original todo app:
+### Original todo app:
 https://github.com/smakosh/react-todolist
