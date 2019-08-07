@@ -16,14 +16,14 @@ OR
 
 Check src/components/App.jsx for Slang integration
 
-##Intents that are configured:
-####add_task
+## Intents that are configured:
+#### add_task
 eg. add reading to my list
 
-####delete_task
+#### delete_task
 eg. remove reading from my list
 
-####delete_all_tasks
+#### delete_all_tasks
 eg. clear my list
 
 
