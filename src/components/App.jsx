@@ -51,9 +51,9 @@ export default class App extends Component {
             .value.trim() // trim() is standard js string operation. Not part of Slang
             .toLowerCase(); // toLowerCase() is standard js string operation. Not part of Slang
           const addTaskValue = this.addTask(taskToAdd);
-          if (addTaskValue == "success") {
+          if (addTaskValue === "success") {
             return true;
-          } else if (addTaskValue == "task_already_exists") {
+          } else if (addTaskValue === "task_already_exists") {
             // set the negative prompt on the client itself overriding anything configured in the console
             intent.completionStatement.overrideNegative(
               "This task already exists"
