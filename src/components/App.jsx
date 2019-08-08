@@ -60,6 +60,9 @@ export default class App extends Component {
             .toLowerCase(); // toLowerCase() is standard js string operation. Not part of Slang
           const addTaskValue = this.addTask(taskToAdd);
           if (addTaskValue === "success") {
+            intent.completionStatement.overrideAffirmative(
+             "Added task, " + taskToAdd
+            );             // Slang will speak out affirmative prompt (if any) with the string of the current added task
             return true;
           } else if (addTaskValue === "task_already_exists") {
             // set the negative prompt on the client itself overriding anything configured in the console

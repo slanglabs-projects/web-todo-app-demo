@@ -14,6 +14,15 @@
       href="https://unpkg.com/unnamed@1.2.2/dist/css/unnamed.min.css"
     />
     <title>Slangified React App</title>
+      <style>
+        /* Patch: Fix styling of slang UI */
+        body {
+          box-sizing: border-box;
+        }
+        *, *::before, *::after {
+          box-sizing: inherit;
+        }
+    </style>
   </head>
   <body>
     <noscript>
