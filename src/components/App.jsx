@@ -25,9 +25,11 @@ export default class App extends Component {
      *
      */
 
+    // Hints for improving speech recognition. Hints are set per locale.
     const hints = {
-      "en-IN": ["add","to", "task", "clear"]
-  }
+      "en-IN": ["add", "to", "task", "clear"],
+      "en-US": ["add", "to", "task", "clear"]
+    };
 
     // Slang initialization
     Slang.initialize({
@@ -71,19 +73,18 @@ export default class App extends Component {
           }
 
         case "delete_task":
-          if (this.state.tasks.length)
-          {
+          if (this.state.tasks.length) {
             const taskToDelete = intent
-            .getEntity("task")
-            .value.trim()
-            .toLowerCase();
+              .getEntity("task")
+              .value.trim()
+              .toLowerCase();
             this.deleteTask(taskToDelete);
             return true;
           } else {
             intent.completionStatement.overrideNegative(
               "There is no tasks in your list yet"
             );
-            
+
             return false;
           }
 
