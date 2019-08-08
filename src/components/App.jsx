@@ -58,7 +58,6 @@ export default class App extends Component {
             .getEntity("task")
             .value.trim() // trim() is standard js string operation. Not part of Slang
             .toLowerCase(); // toLowerCase() is standard js string operation. Not part of Slang
-            console.log(taskToAdd)
           const addTaskValue = this.addTask(taskToAdd);
           if (addTaskValue === "success") {
             intent.completionStatement.overrideAffirmative(
