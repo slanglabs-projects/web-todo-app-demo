@@ -25,6 +25,10 @@ export default class App extends Component {
      *
      */
 
+    const hints = {
+      "en-IN": ["add","to", "task", "clear"]
+  }
+
     // Slang initialization
     Slang.initialize({
       buddyId: "2e21eb3d46da42738e377a57e96e4738",
@@ -33,6 +37,8 @@ export default class App extends Component {
       locale: "en-IN",
       onSuccess: () => {
         console.log("Slang initialized successfully");
+        // Add the ASR hints to improve recognition of certain words
+        Slang.setASRHints(hints);
       },
       onFailure: () => {
         console.log("Slang Failed to initialize");
@@ -63,15 +69,33 @@ export default class App extends Component {
           } else {
             return false;
           }
+
         case "delete_task":
-          const taskToDelete = intent
+          if (this.state.tasks.length)
+          {
+            const taskToDelete = intent
             .getEntity("task")
             .value.trim()
             .toLowerCase();
-          this.deleteTask(taskToDelete);
-          return true;
+            this.deleteTask(taskToDelete);
+            return true;
+          } else {
+            intent.completionStatement.overrideNegative(
+              "There is no tasks in your list yet"
+            );
+            
+            return false;
+          }
+
         case "delete_all_tasks":
-          this.deleteAll();
+          if (this.state.tasks.length) {
+            this.deleteAll();
+          } else {
+            intent.completionStatement.overrideNegative(
+              "There is no tasks in your list yet"
+            );
+            return false;
+          }
           return true;
         default:
           return false;
